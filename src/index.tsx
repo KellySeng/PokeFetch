@@ -1,3 +1,6 @@
 import * as ReactDOM from 'react-dom'
+import DisplayMainPage from './components/DisplayMainPage'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-ReactDOM.render(<h1>This is a pokemon fetch</h1>, document.getElementById('root'))
+
+ReactDOM.render(<DisplayMainPage/>, document.getElementById('root'))
