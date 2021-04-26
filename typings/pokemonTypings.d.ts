@@ -1,7 +1,10 @@
 declare namespace PokemonTypings {
     export type PokemonType = {
         slot: number,
-        type: {name : string, url: string}
+        type: {
+            name: string,
+            url: string
+        }
     }
     
     export type PokemonSprite = {

@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Nav, Tab, Col, Row, Container } from 'react-bootstrap'
+import { Nav, Tab, Col, Row, Container, Tabs } from 'react-bootstrap'
 
 type DisplaySpritesProps = {
     sprites: PokemonTypings.PokemonSprite
@@ -14,8 +14,7 @@ export default class DisplaySprites extends React.Component<DisplaySpritesProps>
     render() {
         const {front_default, back_default, front_shiny, back_shiny} = this.props.sprites
         return (
-        <div>
-            <Tab.Container id="left-tabs-example" defaultActiveKey="first">
+            <Tab.Container id="left-tabs-example" defaultActiveKey="default">
                 <Row>
                 <Col sm={3}>
                     <Nav variant="pills" className="flex-column">
@@ -30,17 +29,17 @@ export default class DisplaySprites extends React.Component<DisplaySpritesProps>
                 <Col sm={9}>
                     <Tab.Content>
                     <Tab.Pane eventKey="default">
-                    <img src={front_default}/>
-                    <img src={back_default}/>
+                    <img loading="lazy"  src={front_default}/>
+                    <img loading="lazy" src={back_default}/>
                     </Tab.Pane>
                     <Tab.Pane eventKey="shiny">
-                    <img src={front_shiny}/>
-                    <img src={back_shiny}/>
+                    <img loading="lazy" src={front_shiny}/>
+                    <img loading="lazy" alt={"loading"} src={back_shiny}/>
                     </Tab.Pane>
                     </Tab.Content>
                 </Col>
                 </Row>
             </Tab.Container>
-        </div>)
+        )
     }
 }

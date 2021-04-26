@@ -1,5 +1,6 @@
 import * as React from 'react'
-import { InputGroup, FormControl, DropdownButton, Dropdown, Button, Spinner, Col, Row, Container } from 'react-bootstrap'
+import {useReducer} from 'react'
+import { InputGroup, FormControl, DropdownButton, Dropdown, Button, Spinner, Col, Row, Container, Media } from 'react-bootstrap'
 import fetchPokemonData from '../actions/fetchPokemonData'
 import  DisplaySprites from './DisplaySprites'
 
@@ -10,17 +11,38 @@ type SearchPokemonProps = {
 type SearchPokemonState = {
     categorySelected: string,
     valueSearched: string,
-    loading: boolean,
-    pokemonData?: PokemonTypings.PokemonData
+}
+
+type Action<T> =
+| { type: 'empty' }
+| { type: 'loading' }
+| { type: 'success', results: T }
+| { type: 'failure', error: number };
+
+type State<T> =
+| { status: 'empty' }
+| { status: 'loading' }
+| { status: 'error', error: number }
+| { status: 'success', data: T }
+
+
+function reducer<S>(state: State<S>, action: Action<S>): State<S> {
+    switch (action.type) {
+        case 'loading': return { status: 'loading' };
+        case 'success': return { status: 'success', data: action.results };
+        case 'failure': return { status: 'error', error: action.error };
+        case 'empty': return { status: 'empty' }
+    }
 }
 
 export default function SearchPokemon ({searchCategories}: SearchPokemonProps) {
     const [searchPokemonState, setSearchPokemonState] = React.useState<SearchPokemonState>({
         categorySelected: searchCategories[0],
-        loading: false,
         valueSearched: '',
     })
-    const { categorySelected, valueSearched, loading, pokemonData } = searchPokemonState
+
+    const[dispatchState, dispatch] = useReducer<React.Reducer<State<PokemonTypings.PokemonData>, Action<PokemonTypings.PokemonData>>>(reducer, {status : 'empty'})
+    const { categorySelected, valueSearched } = searchPokemonState
     return <div>
           <InputGroup className="mb-3">
             <DropdownButton as={InputGroup.Prepend} variant="secondary" title={categorySelected} id="input-group-dropdown-1">
@@ -40,24 +62,26 @@ export default function SearchPokemon ({searchCategories}: SearchPokemonProps) {
                 <Button 
                     type="submit" 
                     onClick={() => {
-                        setSearchPokemonState({...searchPokemonState, loading: true})
-                        fetchPokemonData(valueSearched).then( response => setSearchPokemonState({...searchPokemonState, loading: false, pokemonData: response}))
+                        setSearchPokemonState({...searchPokemonState})
+                        dispatch({ type: 'loading'});
+                        fetchPokemonData<PokemonTypings.PokemonData>(valueSearched.toLowerCase()).then(response => {
+                            dispatch({ type: 'success', results : response });
+                        })
                     }}>
                     Search
                 </Button>
             </InputGroup.Append>     
         </InputGroup>
 
-        {loading && <Spinner animation="border"/>}
-        {pokemonData && !loading && 
+        {dispatchState.status == 'loading' && <Spinner animation="border"/>}
+        {dispatchState.status == 'success' && dispatchState.data &&
         <Container>
             <Row>
-                <Col md="auto">{pokemonData.id}</Col>
-                <Col>{pokemonData.name}</Col>
-                {pokemonData.types.map( item => <Col>{item.type.name}</Col>)}
+                <Col md="auto">{dispatchState.data.id}</Col>
+                <Col>{dispatchState.data.name}</Col>
+                {dispatchState.data.types.map(item => <Col>{item.type.name}</Col>)}
             </Row>
-
-            <DisplaySprites sprites={pokemonData.sprites}/>
+            <DisplaySprites sprites={dispatchState.data.sprites}/>
         </Container>}
     </div>
 }

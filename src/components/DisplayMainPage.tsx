@@ -5,7 +5,7 @@ export default class DisplayMainPage extends React.Component {
     render() {
         return <div>
             <img src="pokemonCompendiumTitle.png"/>
-            <SearchPokemon searchCategories={['Name','Id']}/>
+            <SearchPokemon searchCategories={['Id / Name']}/>
         </div>
     }
 }
