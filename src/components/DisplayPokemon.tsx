@@ -22,7 +22,7 @@ export default class DisplayPokemon extends React.Component<DisplayPokemonProps>
                     <Card.Img variant="top"  src={pokemonData.sprites.other["official-artwork"].front_default} />
                     <Card.Body>
                         <Card.Title className="title"> <Badge variant="primary">#{pokemonData.id}</Badge> {pokemonData.name} </Card.Title>
-                        <DisplayTypes types={pokemonData.types.map(item => item.type.name)}/>
+                        <DisplayTypes types={pokemonData.types.map(item => ({name: item.type.name}))}/>
                         <ListGroup>
                             <ListGroup.Item>Height: {pokemonData.height/10} m</ListGroup.Item>
                             <ListGroup.Item>Weight: {pokemonData.weight/10} kg</ListGroup.Item>

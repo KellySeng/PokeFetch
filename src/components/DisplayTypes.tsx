@@ -2,7 +2,10 @@ import * as React from "react"
 import { Badge } from 'react-bootstrap'
 
 type DisplayTypesProps = {
-    types: string[]
+    types: {
+        name: string,
+        coefficient?: number
+    } []
 }
 
 export default class DisplayTypes extends React.Component<DisplayTypesProps> {
@@ -15,7 +18,10 @@ export default class DisplayTypes extends React.Component<DisplayTypesProps> {
         const { types } = this.props
         return (
             <div className="mb-2">
-                {types.map(name => <Badge className="mr-2" pill variant={name}>{name.toUpperCase()}</Badge>)}
+                {types.map(type => 
+                <Badge className="mr-2" pill variant={type.name}>{type.name.toUpperCase()}
+                    {type.coefficient != undefined && <Badge className="ml-1" variant="light">X {type.coefficient}</Badge>}
+                </Badge>)}
             </div>
         )
     }
