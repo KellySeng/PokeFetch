@@ -16,12 +16,70 @@ declare namespace PokemonTypings {
         back_shiny: string
         front_default: string
         front_shiny: string
+        other: {
+            "official-artwork": PokemonSprite
+        }
+    }
+
+    export type PokemonSpecies = {
+        flavor_text_entries : {
+            flavor_text: string
+            langage: RedirectionUrl
+            version: RedirectionUrl
+        }[]
     }
     
     export type PokemonData = {
-        id: number,
-        name: string,
+        id: number
+        name: string
+        base_experience: number
+        height: number // in decimeters
+        weight: number //in hectograms
+        species: RedirectionUrl
         types: PokemonType[]
-        sprites : PokemonSprite
+        sprites: PokemonSprite,
     }
+
+    export type TypeRelations = {
+        no_damage_to: RedirectionUrl[]
+        half_damage_to: RedirectionUrl[]
+        double_damage_to: RedirectionUrl[]
+        no_damage_from: RedirectionUrl[]
+        half_damage_from: RedirectionUrl[]
+        double_damage_from: RedirectionUrl[]
+    }
+
+    export type TypeEffectiveness = {
+        name: string
+        damage_relations: TypeRelations
+    }
+
+    export type PokemonInformation = {
+        pokemonData: PokemonData
+        pokemonSpecies: PokemonSpecies
+        typeEffectiveness: TypeEffectiveness[]
+    }
+
+    export type SearchPokemonProps = {
+        searchCategories: string[]
+    }
+
+    export type RedirectionUrl = {
+        name: string
+        url: string
+    }
+    
+     export type SearchPokemonState = {
+        categorySelected: string,
+        valueSearched: string,
+        pokemonInformation?: PokemonInformation
+        loading: boolean
+        error?: number
+    }
+}
+
+declare namespace PokemonReducerTypes {
+    type Action =
+    | { type: 'success', results: PokemonInformation}
+    | { type: 'failure', error: number };
 }
