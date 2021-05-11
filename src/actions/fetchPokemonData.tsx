@@ -4,9 +4,12 @@ const baseUrlApi = "https://pokeapi.co/api/v2"
 export async function fetchPokemonData (value : string): Promise<PokemonTypings.PokemonInformation> {
     const pokemonData =  await fetchInfo<PokemonTypings.PokemonData>(`${baseUrlApi}/pokemon/${value}`)
     const pokemonSpecies = await fetchInfo<PokemonTypings.PokemonSpecies>(`${baseUrlApi}/pokemon-species/${value}`)
-    const typeEffectiveness = await Promise.all(pokemonData.types.map(item => fetchInfo<PokemonTypings.TypeEffectiveness>(`${baseUrlApi}/type/${item.type.name}`))) 
-    
-    return {pokemonData: pokemonData, pokemonSpecies: pokemonSpecies, typeEffectiveness: typeEffectiveness}
+    return {pokemonData: pokemonData, pokemonSpecies: pokemonSpecies }
+}
+
+export async function fetchTypesData (types: string []): Promise<PokemonTypings.TypeEffectiveness[]> {
+    const typeEffectiveness = await Promise.all(types.map(name=> fetchInfo<PokemonTypings.TypeEffectiveness>(`${baseUrlApi}/type/${name}`))) 
+    return typeEffectiveness
 }
 
 async function fetchInfo<T>(url: string) : Promise<T> {
