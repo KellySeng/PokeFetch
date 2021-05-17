@@ -57,11 +57,11 @@ declare namespace PokemonTypings {
     export type PokemonInformation = {
         pokemonData: PokemonData
         pokemonSpecies: PokemonSpecies
-        typeEffectiveness: TypeEffectiveness[]
     }
 
     export type SearchPokemonProps = {
-        searchCategories: string[]
+        searchCategories: string[],
+        types: string[]
     }
 
     export type RedirectionUrl = {
