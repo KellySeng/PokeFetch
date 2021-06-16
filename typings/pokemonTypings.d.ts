@@ -28,6 +28,12 @@ declare namespace PokemonTypings {
             version: RedirectionUrl
         }[]
     }
+
+    export type PokemonBaseStats = {
+        base_stat: number,
+        effort: number,
+        stat: RedirectionUrl
+    }
     
     export type PokemonData = {
         id: number
@@ -38,6 +44,7 @@ declare namespace PokemonTypings {
         species: RedirectionUrl
         types: PokemonType[]
         sprites: PokemonSprite,
+        stats: PokemonBaseStats[]
     }
 
     export type TypeRelations = {

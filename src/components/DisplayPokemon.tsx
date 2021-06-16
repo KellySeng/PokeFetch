@@ -3,6 +3,7 @@ import { Media, Card, Badge, ListGroup } from 'react-bootstrap'
 import DisplaySprites from './DisplaySprites'
 import DisplayTypes from './DisplayTypes'
 import DisplayTypeEffectiveness from './DisplayTypeEffectiveness'
+import DisplayStats from './DisplayStats'
 
 type DisplayPokemonProps = {
     pokemon: PokemonTypings.PokemonInformation
@@ -17,11 +18,11 @@ export default class DisplayPokemon extends React.Component<DisplayPokemonProps>
     }
 
     render() {
-        console.log("Something changed")
         const {pokemon, typeEffectiveness, types} = this.props
         const { pokemonData, pokemonSpecies } = pokemon
         const pokemonType = pokemonData.types.map(item => item.type.name)
         const pokemonTypeEffectiveness = this.props.typeEffectiveness.filter(typeEffectiveness => pokemonType.includes(typeEffectiveness.name))
+        console.log(pokemonData.stats)
         return (
             <Media>
                 <Card className="mr-3" style={{ width: '18rem' }}>
@@ -39,6 +40,7 @@ export default class DisplayPokemon extends React.Component<DisplayPokemonProps>
                     </Card.Body>
                 </Card>
                 <Media.Body>
+                    <DisplayStats stats={pokemonData.stats}/>
                     <DisplayTypeEffectiveness typeRelations={pokemonTypeEffectiveness} types={types}/>
                     <DisplaySprites sprites={pokemonData.sprites} />
                 </Media.Body>
