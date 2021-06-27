@@ -23,7 +23,7 @@ export default class DisplayStats extends React.Component<DisplayStatsProps> {
                             <tr>
                                 <td className="stat-name">{item.stat.name.replace('-', ' ')}</td>
                                 <td className="stat-value">{item.base_stat}</td>
-                                <td className="stat-bar"><ProgressBar now={item.base_stat}/></td>
+                                <td className="stat-bar"><ProgressBar variant={item.stat.name} max={255} now={item.base_stat}/></td>
                             </tr>
                         )})}   
                          <tr>

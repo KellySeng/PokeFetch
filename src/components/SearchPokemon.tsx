@@ -15,7 +15,7 @@ export default function SearchPokemon ({searchCategories, types}: PokemonTypings
     const [typeEffectiveness, setTypeEffectivenessState] = React.useState<PokemonTypings.TypeEffectiveness[]>([])
     React.useEffect(() => {
         fetchTypesData(types).then(response => setTypeEffectivenessState(response))
-    },[types])
+    }, [types])
 
     const[state, dispatch] = useReducer(reducer, searchPokemonState)
     const { categorySelected, valueSearched } = searchPokemonState
@@ -47,7 +47,6 @@ export default function SearchPokemon ({searchCategories, types}: PokemonTypings
                 </Button>
             </InputGroup.Append>     
         </InputGroup>
-            
             
         {state.pokemonInformation && <DisplayPokemon pokemon={state.pokemonInformation} typeEffectiveness={typeEffectiveness} types={types}/>}
     </div>

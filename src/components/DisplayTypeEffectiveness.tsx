@@ -1,7 +1,6 @@
 import { Table } from 'react-bootstrap'
 import DisplayTypes from "./DisplayTypes"
 
-
 type DisplayTypeRelationsProps = {
     typeRelations: PokemonTypings.TypeEffectiveness[],
     types: string[]
@@ -41,10 +40,12 @@ export default function DisplayTypeEffectiveness ({typeRelations, types}: Displa
                             return (
                                 <tr>
                                     <td>{label.name}</td>
-                                    <td><DisplayTypes types={
+                                    <td>
+                                        <DisplayTypes types={
                                             Array.from(typeCoefficients.entries())
                                             .filter(type => label.condition(type[1]))
-                                            .map(type => ({name : type[0], coefficient: type[1]}))} /></td>
+                                            .map(type => ({name : type[0], coefficient: type[1]}))} />
+                                    </td>
                                 </tr>
                             )
                         })}
