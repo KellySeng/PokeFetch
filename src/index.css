@@ -73,3 +73,16 @@
 .title {
     text-transform: capitalize;
 }
+
+.stat-bar {
+    width: 500px;
+}
+
+.stat-value {
+    width: 10px;
+}
+
+.stat-name {
+    width: 50px;
+    text-transform: capitalize;
+}

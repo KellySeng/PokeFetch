@@ -18,7 +18,7 @@ export default class DisplayPokemon extends React.Component<DisplayPokemonProps>
     }
 
     render() {
-        const {pokemon, typeEffectiveness, types} = this.props
+        const {pokemon, types} = this.props
         const { pokemonData, pokemonSpecies } = pokemon
         const pokemonType = pokemonData.types.map(item => item.type.name)
         const pokemonTypeEffectiveness = this.props.typeEffectiveness.filter(typeEffectiveness => pokemonType.includes(typeEffectiveness.name))

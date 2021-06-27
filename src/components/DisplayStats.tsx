@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Nav, Tab, Col, Row, Container, Tabs } from 'react-bootstrap'
+import {Table, ProgressBar} from "react-bootstrap"
 
 type DisplayStatsProps = {
     stats: PokemonTypings.PokemonBaseStats[]
@@ -12,9 +12,27 @@ export default class DisplayStats extends React.Component<DisplayStatsProps> {
     }
 
     render() {
+        const stats = this.props.stats
         return (
             <div>
-                <h2 className="title">Stats</h2>
+                <h2 className="title">Base Stats</h2>
+                <Table responsive size="sm">
+                    <tbody>
+                        {stats.map( item => {
+                            return (
+                            <tr>
+                                <td className="stat-name">{item.stat.name.replace('-', ' ')}</td>
+                                <td className="stat-value">{item.base_stat}</td>
+                                <td className="stat-bar"><ProgressBar now={item.base_stat}/></td>
+                            </tr>
+                        )})}   
+                         <tr>
+                            <td className="stat-name">Total</td>
+                            <td className="stat-value">{stats.map(item => item.base_stat).reduce(function(a,b) { return a + b })}</td>
+                            <td className="stat-bar"></td>
+                        </tr>
+                    </tbody>
+                </Table>
             </div>
         )
     }

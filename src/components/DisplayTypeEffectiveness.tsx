@@ -1,4 +1,3 @@
-import * as React from "react"
 import { Table } from 'react-bootstrap'
 import DisplayTypes from "./DisplayTypes"
 
@@ -6,11 +5,6 @@ import DisplayTypes from "./DisplayTypes"
 type DisplayTypeRelationsProps = {
     typeRelations: PokemonTypings.TypeEffectiveness[],
     types: string[]
-}
-
-type DisplayTypeCoefficentState = {
-    defaultTypesCoefficients: Map<string, number>,
-    currentTypesCoefficients: Map<string, number>,
 }
 
 export default function DisplayTypeEffectiveness ({typeRelations, types}: DisplayTypeRelationsProps) : JSX.Element {
@@ -57,6 +51,4 @@ export default function DisplayTypeEffectiveness ({typeRelations, types}: Displa
                     </tbody>
                 </Table>
             </div>
-
-
 }
