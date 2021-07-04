@@ -110,3 +110,9 @@
 .bg-rank-6 {
     background-color : turquoise
 }
+
+.align-center {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+}
