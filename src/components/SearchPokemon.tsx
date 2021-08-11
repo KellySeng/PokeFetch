@@ -21,17 +21,9 @@ export default function SearchPokemon ({searchCategories, types}: PokemonTypings
     const { categorySelected, valueSearched } = searchPokemonState
     return <div>
           <InputGroup className="mb-3">
-            <DropdownButton as={InputGroup.Prepend} variant="secondary" title={categorySelected} id="input-group-dropdown-1">
-               { searchCategories.map( category => 
-                    <Dropdown.Item 
-                        active={categorySelected === category} 
-                        onClick={ () => setSearchPokemonState({...searchPokemonState, categorySelected: category, valueSearched: ''})}>
-                            {category}
-                    </Dropdown.Item>)}
-            </DropdownButton>
             <FormControl 
                 aria-describedby="basic-addon1" 
-                placeholder="Search..." 
+                placeholder="Search a pokemon..." 
                 value={valueSearched} 
                 onChange={event => setSearchPokemonState({...searchPokemonState, valueSearched: event.target.value }) } />
             <InputGroup.Append>
