@@ -24,7 +24,6 @@ export default class DisplayPokemon extends React.Component<DisplayPokemonProps>
         const pokemonTypeEffectiveness = this.props.typeEffectiveness.filter(typeEffectiveness => pokemonType.includes(typeEffectiveness.name))
         console.log(pokemonSpecies)
         return (
-            <Container>
                 <Row>
                     <Col xs={12} md={12} lg={3}>
                         <Card>
@@ -47,7 +46,6 @@ export default class DisplayPokemon extends React.Component<DisplayPokemonProps>
                     <DisplayTypeEffectiveness typeRelations={pokemonTypeEffectiveness} types={types}/>
                     </Col>
                     </Row>
-            </Container>
         )
     }
 }
