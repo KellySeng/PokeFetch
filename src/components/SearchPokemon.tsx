@@ -32,7 +32,7 @@ export default function SearchPokemon ({searchCategories, types}: PokemonTypings
                 <Button 
                     type="submit" 
                     onClick={() => {
-                        dispatch({ type: 'loading' });
+                        dispatch({ type: 'loading', loading: true });
                         fetchPokemonData(valueSearched.toLowerCase()).then(response => {
                             dispatch({ type: 'success', results : response });
                         })
