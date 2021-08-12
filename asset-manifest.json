@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/pokemon-compendium/static/css/main.94ad8ba4.chunk.css",
-    "main.js": "/pokemon-compendium/static/js/main.1e377d89.chunk.js",
-    "main.js.map": "/pokemon-compendium/static/js/main.1e377d89.chunk.js.map",
+    "main.js": "/pokemon-compendium/static/js/main.54a8fdd7.chunk.js",
+    "main.js.map": "/pokemon-compendium/static/js/main.54a8fdd7.chunk.js.map",
     "runtime-main.js": "/pokemon-compendium/static/js/runtime-main.07cec746.js",
     "runtime-main.js.map": "/pokemon-compendium/static/js/runtime-main.07cec746.js.map",
     "static/css/2.325dfaf0.chunk.css": "/pokemon-compendium/static/css/2.325dfaf0.chunk.css",
@@ -18,6 +18,6 @@
     "static/css/2.325dfaf0.chunk.css",
     "static/js/2.0563e84a.chunk.js",
     "static/css/main.94ad8ba4.chunk.css",
-    "static/js/main.1e377d89.chunk.js"
+    "static/js/main.54a8fdd7.chunk.js"
   ]
 }
